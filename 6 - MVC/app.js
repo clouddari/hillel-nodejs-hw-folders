@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const messageRoutes = require("./routes/messageRoutes");
+const errorController = require("./controllers/errorController");
 const morgan = require("morgan");
 
 const app = express();
@@ -11,8 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", messageRoutes);
 
 app.use(morgan("tiny"));
-app.use((req, res, next) => {
-  res.status(404).render("404");
-});
+
+app.use(errorController.pageNotFound);
 
 module.exports = app;
