@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h2 Register
+
+  if error
+    p(style="color:red") #{error}
+
+  form(action="/register" method="POST")
+    label(for="email") Email:
+    input(type="email" name="email" required)
+    br
+
+    label(for="password") Password:
+    input(type="password" name="password" required)
+    br
+
+    label
+      input(type="radio" name="role" value="user" checked)
+      | user
+
+    label
+      input(type="radio" name="role" value="admin")
+      | admin
+    br
+
+    button(type="submit") REGISTER

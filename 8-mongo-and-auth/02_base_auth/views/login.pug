@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h2 login
+
+  if success
+    p(style="color:green") User created successfully, please log in
+  if error
+    p(style="color:red") #{error}
+
+  form(action="/login" method="POST")
+    label(for="email") Email:
+    input(type="email" name="email" required)
+    br
+
+    label(for="password") Password:
+    input(type="password" name="password" required)
+    br
+
+    button(type="submit") LOG IN
+
+    p
+  | Don't have an account?
+  a(href="/register") Register here
+

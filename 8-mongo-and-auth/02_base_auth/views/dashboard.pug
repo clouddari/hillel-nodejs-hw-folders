@@ -1,0 +1,23 @@
+include layout
+
+block content
+  .container
+    h1(style="margin-bottom: 0.5em;") Вітаємо, #{user.email}!
+    p(role="subtitle") Ваша роль: 
+      strong #{user.role} 
+    p(style="margin-bottom: 2em; color: #555") Ви увійшли в систему.
+
+    img(src="https://miro.medium.com/v2/resize:fit:1400/1*heL-f8bPywxsNG2snNPIwQ.jpeg", alt="", style="max-width:200px;")
+
+    if tasks.length
+      h2(style="margin-bottom: 1em;") Ваші задачі:
+      ul(style="list-style: none; padding: 0;")
+        each task in tasks
+          li(style="background: #f2f2f2; padding: 1em; margin-bottom: 1em; border-radius: 8px;")
+            h4(style="margin: 0 0 0.5em 0; color: #333") #{task.title}
+            p(style="margin: 0; color: #666") #{task.description}
+    else
+      p(style="color: gray; font-style: italic;") Немає задач для відображення.
+
+    div
+      a(href="/logout") Вийти
