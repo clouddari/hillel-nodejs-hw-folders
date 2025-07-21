@@ -1,0 +1,15 @@
+include header
+
+block content
+  .container
+    h1.text-2xl.mb-4 Введіть токен для відновлення пароля
+
+    if error
+      p(style="color:red")= error
+
+    form(action="/reset-password", method="POST", class="space-y-4 bg-purple-50 p-6 rounded-md shadow-md max-w-md")
+      div
+        label(for="token", class="block font-semibold mb-1") Токен:
+        input(type="text", name="token", required, class="w-full p-2 border border-gray-300 rounded")
+
+      button(type="submit", class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700") Далі

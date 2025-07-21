@@ -1,0 +1,13 @@
+include header
+
+.container
+  h1= article.title
+  p= article.content
+
+  if article.tags && article.tags.length
+    p
+      | Теги: 
+      each tag in article.tags
+        span(style="margin: 5px") #[strong ##{tag}]
+
+  a(href="/articles") ← Назад до списку

@@ -60,8 +60,8 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  app.locals.username = req.session?.user?.email || null;
-  app.locals.role = req.session?.user?.role || null;
+  res.locals.username = req.session?.user?.email || null;
+  res.locals.role = req.session?.user?.role || null;
   next();
 });
 
@@ -90,9 +90,7 @@ app.post("/login", async (req, res) => {
     if (!user) {
       return res.redirect("/login?error=Login or password is incorrect");
     }
-
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
       return res.redirect("/login?error=Login or password is incorrect");
     }
