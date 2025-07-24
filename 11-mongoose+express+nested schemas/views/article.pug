@@ -1,0 +1,103 @@
+doctype html
+html
+  head
+    title= article.title
+    style.
+      body {
+        background-color: #111;
+        color: #c2fbd7;
+        font-family: monospace;
+        padding: 2rem;
+        max-width: 800px;
+        margin: auto;
+      }
+
+      h1, h3, h4 {
+        color: #9effc2;
+        border-left: 3px solid #39ff14;
+        padding-left: 0.5rem;
+        margin-top: 2rem;
+      }
+
+      p, li {
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        padding-left: 1.5rem;
+      }
+
+      div.box {
+        border-left: 2px solid #39ff14;
+        padding-left: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      input, textarea {
+        background: #000;
+        border: 1px solid #39ff14;
+        color: #39ff14;
+        padding: 0.5rem;
+        width: 100%;
+        margin-bottom: 1rem;
+        font-family: monospace;
+      }
+
+      button {
+        background: transparent;
+        color: #39ff14;
+        border: 1px solid #39ff14;
+        padding: 0.4rem 1rem;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #39ff14;
+        color: #000;
+      }
+
+      strong {
+        color: #ff81f9;
+      }
+
+      .comment-meta {
+        font-size: 0.8em;
+        color: gray;
+      }
+
+  body
+    h1= article.title
+
+    if article.content && article.content.summary
+      p
+        strong Summary:
+        | #{article.content.summary}
+
+    if article.content && article.content.body
+      p= article.content.body
+
+
+      if article.comments && article.comments.length
+        h4 Коментарі:
+        ul
+          each comment in article.comments
+            li(style="list-style:none")
+              p
+                strong= comment.author
+                | : #{comment.text}
+              p(style="font-size: 0.8em; color: gray")= comment.dateStr
+      else
+        p(style="color: gray") Без коментарів
+
+      h3 Add a comment
+
+      form(method="POST", action=`/comments`)
+        div 
+          label(for="author") Name: 
+          input(type="text", name="author", required)
+
+        div  
+          label(for="comment") Comment: 
+          textarea(name="text", required)
+         
+        button(type="submit") Add

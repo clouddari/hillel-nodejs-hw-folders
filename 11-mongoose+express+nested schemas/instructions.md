@@ -1,0 +1,2 @@
+1. Run seedDB.js once to send data to the Mongo DB; 
+2. 
