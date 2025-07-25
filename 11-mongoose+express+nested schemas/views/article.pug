@@ -85,7 +85,7 @@ html
               p
                 strong= comment.author
                 | : #{comment.text}
-              p(style="font-size: 0.8em; color: gray")= comment.dateStr
+              p(style="font-size: 0.8em; color: gray")= new Date(comment.date).toLocaleString()
       else
         p(style="color: gray") Без коментарів
 

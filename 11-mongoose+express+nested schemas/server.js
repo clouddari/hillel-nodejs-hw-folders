@@ -25,12 +25,7 @@ app.get("/", async (req, res) => {
     }
 
     if (article.comments) {
-      article.comments = article.comments
-        .filter((c) => c.visible)
-        .map((c) => {
-          c.dateStr = new Date(c.date).toLocaleString();
-          return c;
-        });
+      article.comments = article.comments.filter((c) => c.visible);
     }
     res.render("article", { article });
   } catch (err) {
