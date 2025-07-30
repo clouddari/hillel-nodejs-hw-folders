@@ -1,0 +1,11 @@
+doctype html 
+html 
+    head
+       h1 #{__('site_title')}
+       title #{__('site_title')}
+       link(rel="stylesheet", href="/style.css")
+    body 
+     .wrapper
+       include header.pug
+       block content
+     include footer.pug

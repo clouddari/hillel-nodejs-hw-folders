@@ -1,0 +1,9 @@
+nav
+  ul 
+    li: a(href=`/${lang}`) #{__('home')}
+    li: a(href=`/${lang}/page`) #{__('page')}
+    li(class=lang === 'ua' ? 'lang-ua active' : 'lang-ua')
+     a(href=path.replace(/^\/(ua|fr)/, '/ua').replace(/^\/(?!ua|fr)/, '/ua')) Українська
+
+    li(class=lang === 'fr' ? 'lang-fr active' : 'lang-fr')
+     a(href=path.replace(/^\/(ua|fr)/, '/fr').replace(/^\/(?!ua|fr)/, '/fr')) Français

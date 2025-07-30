@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  .article-wrapper
+    h2.article-title= article.caption[lang]
+    div.art-text!= article.text[lang]

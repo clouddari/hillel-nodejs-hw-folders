@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .articles-wrapper
+    if articles.length
+      each article in articles
+        article.article-card
+          h2.article-title= article.caption[lang]
+          div.art-text!= article.text[lang]
+    else 
+      p.empty-message #{__('no_articles')}
