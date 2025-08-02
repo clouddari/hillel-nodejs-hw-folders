@@ -1,36 +1,36 @@
 const express = require("express");
 const router = express.Router();
-const Article = require("../models/article");
+const Page = require("../models/page");
 
 router.get("/", async (req, res) => {
   try {
-    const article = await Article.findOne();
-    if (!article) {
+    const page = await Page.findOne();
+    if (!page) {
       return res.status(500).send("Статтю не знайдено");
     }
 
     const lang = req.getLocale();
     req.setLocale(lang);
-    res.render("main", { article, lang, path: req.path });
+    res.render("main", { page, lang, path: req.path });
   } catch (err) {
-    console.error("Error fetching article", err);
+    console.error("Error fetching page", err);
     res.status(500).send("Server error");
   }
 });
 
 router.get("/page", async (req, res) => {
   try {
-    const articles = await Article.find().skip(1).limit(1);
+    const pages = await Page.find().skip(1).limit(1);
     const lang = req.getLocale();
     req.setLocale(lang);
 
     res.render("page", {
-      article: articles[0],
+      page: pages[0],
       lang,
       path: req.baseUrl + req.path,
     });
   } catch (err) {
-    console.error("Error fetching second article", err);
+    console.error("Error fetching second page", err);
     res.status(500).send("Server error");
   }
 });

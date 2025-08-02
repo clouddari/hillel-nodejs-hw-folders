@@ -1,4 +1,5 @@
 const connectDB = require("./db/db");
+const setLocale = require("./middleware/setLocale");
 
 connectDB().then(() => {
   const express = require("express");
@@ -24,21 +25,7 @@ connectDB().then(() => {
   });
 
   app.use(i18n.init);
-
-  app.use("/:lang", (req, res, next) => {
-    const lang = req.params.lang;
-
-    if (i18n.getLocales().includes(lang)) {
-      req.setLocale(lang);
-      res.locals.lang = lang;
-    } else {
-      req.setLocale(config.defaultLocale);
-      res.locals.lang = config.defaultLocale;
-    }
-
-    res.locals.path = req.baseUrl + req.path;
-    next();
-  });
+  app.use("/:lang", setLocale);
 
   app.get("/", (req, res) => res.redirect(`/${config.defaultLocale}`));
 

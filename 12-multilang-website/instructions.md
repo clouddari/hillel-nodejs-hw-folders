@@ -7,7 +7,7 @@
    Переконайтесь, що він працює на порту 27017 або змініть URL у config/dev.json.
 
 3. Імпортуйте дані в базу:
-   run node scripts/seedArticles.js
+   run node scripts/node seedPages.js
 
 4. Запустіть сервер:
    npm run dev

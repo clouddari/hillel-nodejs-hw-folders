@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const articleSchema = new mongoose.Schema({
+const pageSchema = new mongoose.Schema({
   caption: {
     ua: {
       type: String,
@@ -31,4 +31,4 @@ const articleSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Article", articleSchema);
+module.exports = mongoose.model("Page", pageSchema);
