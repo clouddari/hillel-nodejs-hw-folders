@@ -1,19 +1,24 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const cors = require("cors");
+const connectDB = require("./db/db");
+const config = require("./config/dev.json");
+const itemRoutes = require("./routes/items");
+const authRoutes = require("./routes/auth");
 
 const app = express();
-const PORT = 3000;
+const PORT = config.port;
 
-
-// mongoose
-//   .connect("mongodb://localhost:27017/your-db-name")
-//   .then(() => console.log("MongoDB connected"))
-//   .catch((err) => console.error("MongoDB error", err));
+app.use(cors());
+app.use(express.json());
+app.use("/api/items", itemRoutes);
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hello express!");
+  res.send("Books & Movies API");
 });
 
-app.listen(PORT, () => {
-  console.log(`Express app listening on port ${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Express app listening on port ${PORT}`);
+  });
 });

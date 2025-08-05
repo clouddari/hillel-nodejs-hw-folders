@@ -1,0 +1,90 @@
+.works-list a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.works-list a:hover h3 {
+  text-decoration: underline;
+  color: #222;
+}
+
+.works-list h3 {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.works-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  list-style: none;
+}
+
+.works-card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.works-card:hover {
+  transform: translateY(-4px);
+}
+
+.works-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.works-card h3 {
+  margin: 0.5rem 0 0.2rem;
+  font-size: 1rem;
+  color: #222;
+}
+
+.works-card p {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 0.8rem;
+}
+
+.works-page {
+  padding: 2rem 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.works-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.filter-buttons button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+  background-color: #1e1e1e;
+  color: white;
+  border-color: #1e1e1e;
+}

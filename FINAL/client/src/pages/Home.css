@@ -1,0 +1,248 @@
+.home-container {
+  font-family: "Inter", sans-serif;
+  background-color: #f9f9f9;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #222, #444);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-title span {
+  color: #ff5e5e;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background-color: #ff5e5e;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e04848;
+}
+
+.features-section {
+  background-color: #fff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.features-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  color: #222;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.features-list li {
+  font-size: 1rem;
+  padding: 0.6rem 0;
+  color: #444;
+  border-bottom: 1px solid #eee;
+}
+
+.intro-home {
+  padding: 4rem 2rem;
+  background-color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.intro-home h3 {
+  font-weight: 500;
+  font-size: 1.6rem;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #2c2c2c;
+}
+
+.join {
+  padding: 3rem 2rem;
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.join h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.join p {
+  margin: 0.5rem 0;
+  font-size: 1.05rem;
+  color: #4a4a4a;
+}
+.latest-reviews {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: #f4f4f4;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+}
+
+.latest-reviews h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #222;
+}
+
+.review-card {
+  background-color: #fff;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+}
+
+.review-stars {
+  color: #ffbf00;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-text {
+  font-size: 1rem;
+  color: #222;
+  font-style: italic;
+  margin-bottom: 0.7rem;
+  line-height: 1.5;
+}
+
+.review-author {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.review-year {
+  font-weight: 400;
+  color: #777;
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.4rem;
+}
+
+.hero-image {
+  max-width: 440px;
+  margin-bottom: 1rem;
+  animation: floatIn 0.7s ease-in-out;
+}
+
+.features-section {
+  background-color: #fff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.features-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+  color: #111;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.review-link {
+  color: #ff5e5e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.review-link:hover {
+  text-decoration: underline;
+  color: #e04848;
+}
+
+.review-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 1200px;
+}
+@media (min-width: 1024px) {
+  .review-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,52 @@
+.site-header {
+  background-color: #222;
+  padding: 1rem 1.5rem;
+  color: white;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff5e5e;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.main-nav a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: #ff5e5e;
+}
+
+.main-nav button.nav-button {
+  background: none;
+  border: none;
+  color: #eee;
+  font: inherit;
+  padding: 0;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.main-nav button.nav-button:hover {
+  color: #ff5e5e;
+}

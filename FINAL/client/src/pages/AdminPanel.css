@@ -1,0 +1,178 @@
+.admin-container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  font-family: "Inter", sans-serif;
+}
+
+.admin-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.admin-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.admin-form button {
+  background-color: #222;
+  color: #fff;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.admin-form button:hover {
+  background-color: #ff5e5e;
+}
+
+.admin-search {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.admin-item-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.admin-item-card {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 220px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.admin-item-card:hover {
+  transform: translateY(-4px);
+}
+
+.admin-item-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.7rem;
+}
+
+.admin-item-card h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.admin-item-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.admin-item-actions button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-item-actions button:first-child {
+  background-color: #2c2c2c;
+  color: white;
+}
+
+.admin-item-actions button:first-child:hover {
+  background-color: #444;
+}
+
+.admin-item-actions button:last-child {
+  background-color: #ff5e5e;
+  color: white;
+}
+
+.admin-item-actions button:last-child:hover {
+  background-color: #e04848;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.modal-buttons button {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+.modal-buttons button:last-child {
+  margin-right: 0;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-new-button {
+  margin: 1rem auto 2rem;
+  display: block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-new-button:hover {
+  background-color: #ff5e5e;
+}

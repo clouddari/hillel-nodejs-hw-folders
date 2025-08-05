@@ -1,0 +1,9 @@
+{
+  "port": 3000,
+  "defaultLocale": "ua",
+  "appName": "Books & Movies",
+  "tokenExpiresIn": "1h",
+  "clientUrl": "http://localhost:5173",
+  "paginationLimit": 10,
+  "defaultRole": "user"
+}
