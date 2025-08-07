@@ -1,5 +1,5 @@
 .auth-container {
-  max-width: 400px;
+  max-width: 420px;
   margin: 4rem auto;
   padding: 2rem;
   background: #fff;
@@ -14,7 +14,10 @@
   gap: 1rem;
 }
 
-.auth-form input {
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="file"] {
   padding: 0.75rem 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -39,6 +42,40 @@
 .auth-message {
   margin-top: 1rem;
   font-weight: 500;
+}
+
+.radio-group input[type="radio"]:checked + label {
+  background-color: #ff5e5e;
+  color: white;
+  border-color: #ff5e5e;
+}
+
+.image-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.image-preview span {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.image-preview button {
+  background: none;
+  color: #e74c3c;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0;
+  margin-left: 1rem;
+  z-index: 1;
 }
 
 .modal-overlay {
@@ -76,3 +113,42 @@
   margin-bottom: 10px;
 }
 
+.userpic-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 1rem 0 0.5rem;
+  color: #333;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.radio-group input[type="radio"] {
+  display: none;
+}
+
+.radio-group label {
+  padding: 0.5rem 1.2rem;
+  border: 2px solid #ff5e5e;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff5e5e;
+  background-color: #fff5f5;
+  transition: all 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked + label {
+  background-color: #ff5e5e;
+  color: white;
+  border-color: #ff5e5e;
+}
+
+.remove-img{
+  margin-top: 10px;
+}

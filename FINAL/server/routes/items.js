@@ -27,15 +27,14 @@ router.delete("/:id", authenticate, requireRole("admin"), async (req, res) => {
 });
 
 router.post("/:id/reviews", authenticate, async (req, res) => {
-  const { author, authorPic, rating, text } = req.body;
+  const { rating, text } = req.body;
 
   const item = await Item.findById(req.params.id);
-
   if (!item) return res.status(404).json({ message: "Item not found" });
 
   const newReview = {
-    author,
-    authorPic,
+    author: req.user.username,
+    authorPic: req.user.profilePic,
     rating,
     text,
     approved: false,
@@ -140,7 +139,7 @@ router.delete(
           .json({ message: "Item with such review not found" });
       }
 
-      item.reviews.id(reviewId).remove();
+      item.reviews = item.reviews.filter((r) => r._id.toString() !== reviewId);
       await item.save();
 
       res.json({ message: "Review deleted" });

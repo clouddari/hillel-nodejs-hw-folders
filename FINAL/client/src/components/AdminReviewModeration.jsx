@@ -11,11 +11,14 @@ function AdminReviewModeration() {
   useEffect(() => {
     const fetchPending = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/items/reviews/pending", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const res = await axios.get(
+          "http://localhost:3000/api/items/reviews/pending",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         setReviews(res.data);
       } catch (err) {
         console.error("Error fetching pending reviews:", err);
@@ -39,12 +42,13 @@ function AdminReviewModeration() {
         }
       );
       setReviews(reviews.filter((r) => r._id !== reviewId));
+      setSelectedReview(null);
     } catch (err) {
       console.error("Approve failed:", err);
     }
   };
 
-  const cancel = async (reviewId) => {
+  const handleDelete = async (reviewId) => {
     try {
       await axios.delete(
         `http://localhost:3000/api/items/reviews/${reviewId}`,
@@ -55,8 +59,9 @@ function AdminReviewModeration() {
         }
       );
       setReviews(reviews.filter((r) => r._id !== reviewId));
+      setSelectedReview(null); 
     } catch (err) {
-      console.error("Cancel failed:", err);
+      console.error("Delete failed:", err);
     }
   };
 
@@ -75,7 +80,8 @@ function AdminReviewModeration() {
               onClick={() => setSelectedReview(r)}
             >
               <p>
-                <strong>{r.author}</strong> on <em>{r.itemName}</em> ({r.itemType})
+                <strong>{r.author}</strong> on <em>{r.itemName}</em> (
+                {r.itemType})
               </p>
               <p>{r.text}</p>
               <p>Rating: {r.rating}/5</p>
@@ -88,16 +94,38 @@ function AdminReviewModeration() {
         <div className="overlay" onClick={() => setSelectedReview(null)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h3>Review by {selectedReview.author}</h3>
-            <p><strong>Item:</strong> {selectedReview.itemName}</p>
-            <p><strong>Type:</strong> {selectedReview.itemType}</p>
-            <p><strong>Rating:</strong> {selectedReview.rating}/5</p>
-            <p><strong>Text:</strong> {selectedReview.text}</p>
+            <p>
+              <strong>Item:</strong> {selectedReview.itemName}
+            </p>
+            <p>
+              <strong>Type:</strong> {selectedReview.itemType}
+            </p>
+            <p>
+              <strong>Rating:</strong> {selectedReview.rating}/5
+            </p>
+            <p>
+              <strong>Text:</strong> {selectedReview.text}
+            </p>
 
             <div className="button-group">
-              <button className="approve-button" onClick={() => approve(selectedReview._id)}>
+              <button
+                className="approve-button"
+                onClick={() => approve(selectedReview._id)}
+              >
                 Approve
               </button>
-              <button className="cancel-button" onClick={() => cancel(selectedReview._id)}>
+
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(selectedReview._id)}
+              >
+                Delete
+              </button>
+
+              <button
+                className="cancel-button"
+                onClick={() => setSelectedReview(null)}
+              >
                 Cancel
               </button>
             </div>

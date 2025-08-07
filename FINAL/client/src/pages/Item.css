@@ -20,6 +20,9 @@
   margin: 0 auto 1rem;
   max-width: 200px;
   border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
 .item-container p {

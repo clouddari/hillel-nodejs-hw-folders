@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import { useNavigate, Navigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -19,15 +21,17 @@ function Login() {
       });
 
       login(res.data.token);
-      setMessage("You've logged in successfully ");
+      navigate("/");
     } catch (err) {
       setMessage("Wrong credentials or internal server error");
       console.error(err);
     }
   };
 
+  if (user) return <Navigate to="/" />;
+
   return (
-    <div className="auth-container"> 
+    <div className="auth-container">
       <h2>Login</h2>
 
       <form className="auth-form" onSubmit={handleLogin}>

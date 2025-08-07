@@ -9,9 +9,11 @@ function Works() {
   const [filter, setFilter] = useState("all");
   const [query, setQuery] = useState("");
 
-  const filteredItems = items
-    .filter((item) => (filter === "all" ? true : item.type === filter))
-    .filter((item) => item.name.toLowerCase().includes(query.toLowerCase()));
+  const filteredItems = items.filter((item) => {
+    const matchesType = filter === "all" || item.type === filter;
+    const matchesQuery = item.name.toLowerCase().includes(query.toLowerCase());
+    return matchesType && matchesQuery;
+  });
 
   if (loading) return <p>loading...</p>;
   if (error) return <p>error</p>;

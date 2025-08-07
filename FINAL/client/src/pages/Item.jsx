@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import useItemsById from "../hooks/useItemsByID";
-import { useState, useContext } from "react";
+import useItemsById from "../hooks/useItemsById";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import "./Item.css";
@@ -8,12 +8,56 @@ import "./Item.css";
 function ItemPage() {
   const { id } = useParams();
   const { item, loading, error } = useItemsById(id);
+  const { user } = useContext(AuthContext);
   const [text, setText] = useState("");
   const [rating, setRating] = useState(5);
-  const { user } = useContext(AuthContext);
+  const [favorites, setFavorites] = useState([]);
 
-  if (loading) return <p>loading...</p>;
-  if (error || !item) return <p>Item not found.</p>;
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3000/api/users/favorites",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+
+        const ids = res.data.map((fav) =>
+          typeof fav === "object" && fav._id ? fav._id : fav
+        );
+
+        setFavorites(ids);
+      } catch (err) {
+        console.error("Failed to fetch favorites", err);
+      }
+    };
+
+    if (user) fetchFavorites();
+  }, [user]);
+
+  const toggleFavorite = async (itemId) => {
+    const token = localStorage.getItem("token");
+    if (!token) return alert("You must be logged in.");
+
+    try {
+      const res = await axios.post(
+        `http://localhost:3000/api/users/favorites/${itemId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      const ids = res.data.map((fav) =>
+        typeof fav === "object" && fav._id ? fav._id : fav
+      );
+
+      setFavorites(ids);
+    } catch (err) {
+      console.error("Error toggling favorite", err);
+    }
+  };
 
   const submitReview = async () => {
     try {
@@ -38,6 +82,9 @@ function ItemPage() {
     }
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error || !item) return <p>Item not found.</p>;
+
   return (
     <div className="item-container">
       <h2>
@@ -45,6 +92,17 @@ function ItemPage() {
       </h2>
       <img src={item.image} alt={item.name} />
       <p>{item.description}</p>
+
+      {user && (
+        <button
+          onClick={() => toggleFavorite(item._id)}
+          className="favorite-toggle-button"
+        >
+          {favorites.includes(item._id)
+            ? "❤️ Remove from favorites"
+            : "🤍 Add to favorites"}
+        </button>
+      )}
 
       <div className="reviews-section">
         {item.reviews?.length > 0 ? (

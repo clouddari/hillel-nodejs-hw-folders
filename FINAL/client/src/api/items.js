@@ -10,6 +10,7 @@ export async function getItems() {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     });
     return res.data;
   } catch (err) {

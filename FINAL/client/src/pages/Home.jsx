@@ -1,8 +1,11 @@
 import LatestReviews from "../components/LatestReviews";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Home() {
+  const { user } = useContext(AuthContext);
   return (
     <div className="home-container">
       <section className="hero-section">
@@ -18,9 +21,15 @@ function Home() {
           Discover and share reviews for your favorite <strong>books</strong>{" "}
           and <strong>movies</strong>. Join the community and add your voice!
         </p>
-        <Link to="/register" className="cta-button">
-          Get Started
-        </Link>
+        {!user ? (
+          <Link to="/register" className="cta-button">
+            Get Started
+          </Link>
+        ) : (
+          <Link to="/works" className="cta-button">
+            Go to Reviews
+          </Link>
+        )}
       </section>
 
       <section className="features-section">

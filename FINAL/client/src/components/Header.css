@@ -50,3 +50,12 @@
 .main-nav button.nav-button:hover {
   color: #ff5e5e;
 }
+
+.username {
+  color: #ff5e5e;
+  font-weight: bold;
+}
+
+.username:hover {
+  color: #a39f9f;
+}

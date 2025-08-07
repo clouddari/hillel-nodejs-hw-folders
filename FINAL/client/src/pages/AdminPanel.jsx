@@ -40,6 +40,7 @@ function AdminPanel() {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
+
       setForm({
         name: "",
         year: "",
@@ -48,10 +49,12 @@ function AdminPanel() {
         type: "movie",
       });
       setEditing(null);
+
       const res = await axios.get("http://localhost:3000/api/items", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setItems(res.data);
+      setShowModal(false);
     } catch (err) {
       console.error("Error saving item:", err);
     }
@@ -123,6 +126,7 @@ function AdminPanel() {
                 placeholder="Image URL"
                 value={form.image}
                 onChange={(e) => setForm({ ...form, image: e.target.value })}
+                required
               />
               <textarea
                 placeholder="Description"
