@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const connectDB = require("../db/db");
 const Item = require("../models/Item");
 const data = require("../data/books_movies_data.json");
+require("dotenv").config({ path: "../.env" });
 
 async function seedItems() {
   try {

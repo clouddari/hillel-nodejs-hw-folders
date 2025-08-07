@@ -59,7 +59,7 @@ function AdminReviewModeration() {
         }
       );
       setReviews(reviews.filter((r) => r._id !== reviewId));
-      setSelectedReview(null); 
+      setSelectedReview(null);
     } catch (err) {
       console.error("Delete failed:", err);
     }
@@ -74,6 +74,7 @@ function AdminReviewModeration() {
       ) : (
         <ul className="review-list">
           {reviews.map((r) => (
+            
             <li
               key={r._id}
               className="review-item"
@@ -101,7 +102,11 @@ function AdminReviewModeration() {
               <strong>Type:</strong> {selectedReview.itemType}
             </p>
             <p>
-              <strong>Rating:</strong> {selectedReview.rating}/5
+              <p>
+                Rating: {"★".repeat(selectedReview.rating)}
+                {"☆".repeat(5 - selectedReview.rating)}
+              </p>
+              {selectedReview.rating}/5
             </p>
             <p>
               <strong>Text:</strong> {selectedReview.text}

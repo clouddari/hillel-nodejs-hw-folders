@@ -12,7 +12,6 @@ function AuthProvider({ children }) {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        console.log("Decoded user:", decoded);
         setUser(decoded);
       } catch {
         setUser(null);
@@ -23,7 +22,7 @@ function AuthProvider({ children }) {
   const login = (token) => {
     localStorage.setItem("token", token);
     const decoded = jwtDecode(token);
-    console.log("Logged in as:", decoded); 
+    setUser(decoded);
   };
 
   const logout = () => {

@@ -2,11 +2,6 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const sanitizeHtml = require("sanitize-html");
 
-const cleanInput = sanitizeHtml(req.body.comment, {
-  allowedTags: [],
-  allowedAttributes: {},
-});
-
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select("-password");
@@ -20,12 +15,18 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const sanitizedUsername = sanitizeHtml(req.body.username, {
+    const currentUser = await User.findById(req.user._id);
+
+    if (!currentUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const sanitizedUsername = sanitizeHtml(req.body.username || "", {
       allowedTags: [],
       allowedAttributes: {},
     }).trim();
 
-    const sanitizedEmail = sanitizeHtml(req.body.email, {
+    const sanitizedEmail = sanitizeHtml(req.body.email || "", {
       allowedTags: [],
       allowedAttributes: {},
     }).trim();
@@ -37,31 +38,42 @@ exports.updateProfile = async (req, res) => {
         }).trim()
       : "";
 
-    const updates = {
-      username: sanitizedUsername,
-      email: sanitizedEmail,
-    };
+    const updates = {};
 
-    const existingUsername = await User.findOne({
-      username: sanitizedUsername,
-      _id: { $ne: req.user.id },
-    });
-
-    if (existingUsername) {
-      return res.status(400).json({
-        message: "Username already exists. Please choose another one.",
+    if (
+      sanitizedUsername &&
+      sanitizedUsername !== currentUser.username
+    ) {
+      const existingUsername = await User.findOne({
+        username: sanitizedUsername,
+        _id: { $ne: req.user._id },
       });
+
+      if (existingUsername) {
+        return res
+          .status(400)
+          .json({ message: "Username already exists. Please choose another one." });
+      }
+
+      updates.username = sanitizedUsername;
     }
 
-    const existingEmail = await User.findOne({
-      email: sanitizedEmail,
-      _id: { $ne: req.user.id },
-    });
+    if (
+      sanitizedEmail &&
+      sanitizedEmail !== currentUser.email
+    ) {
+      const existingEmail = await User.findOne({
+        email: sanitizedEmail,
+        _id: { $ne: req.user.id },
+      });
 
-    if (existingEmail) {
-      return res
-        .status(400)
-        .json({ message: "Email already exists. Please choose another one." });
+      if (existingEmail) {
+        return res
+          .status(400)
+          .json({ message: "Email already exists. Please choose another one." });
+      }
+
+      updates.email = sanitizedEmail;
     }
 
     if (req.body.password) {
@@ -74,13 +86,14 @@ exports.updateProfile = async (req, res) => {
       updates.profilePic = sanitizedProfilePic;
     }
 
-    const user = await User.findByIdAndUpdate(req.user.id, updates, {
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, updates, {
       new: true,
     }).select("-password");
 
-    res.json(user);
+    res.json(updatedUser);
   } catch (err) {
     console.error("Update failed:", err);
     res.status(500).json({ message: "Update failed" });
   }
 };
+

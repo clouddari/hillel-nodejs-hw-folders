@@ -87,8 +87,15 @@ router.get(
           itemId: item._id,
           itemName: item.name,
           itemType: item.type,
-          ...r.toObject(),
+          _id: r._id,
+          author: r.author,
+          authorPic: r.authorPic,
+          rating: r.rating,
+          text: r.text,
+          time: r.time,
+          approved: r.approved,
         }));
+
       pendingReviews.push(...reviews);
     }
 
